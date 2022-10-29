@@ -6,7 +6,7 @@
           <div>
             <a href="/">
               <img
-                :src="$static.allContributor.edges[0].node.avatar"
+                :src="$static.allContributor.edges[0].node.avatar.src"
                 class="sidebar__author-photo"
                 width="75"
                 height="75"
@@ -56,7 +56,9 @@ query {
     edges {
       node {
         id
-        title           
+        title  
+        avatar    
+        bio     
       }
     }
   }

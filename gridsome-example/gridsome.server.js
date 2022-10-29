@@ -26,18 +26,42 @@ module.exports = function (api) {
 
     addMetadata('gridsomeVersion', gridsomeVersion)
 
-    // contributors
-    const authorsPath = path.join(__dirname, 'contributors/contributors.yaml')
-    const authorsRaw = await fs.readFile(authorsPath, 'utf8')
-    const authorsJson = yaml.safeLoad(authorsRaw)
-    const authors = addCollection('Contributor')
+    //authors
 
-    authorsJson.forEach(({ id, name: title, ...fields }) => {
+    const authorsPath = path.join(__dirname, 'database/authors.json')
+    const authorsRaw = await fs.readFile(authorsPath, 'utf8')
+    const authorsJson = JSON.parse(authorsRaw)
+    const authors = addCollection('Author')
+
+    authorsJson.forEach(({ id, name,bio,displayName,avatar, ...fields }) => {
       authors.addNode({
+        id,
+        name,
+        bio,
+        displayName,
+        avatar,
+        internal: {
+          origin: authorsPath
+        },
+        ...fields
+      })
+    })
+    //authors
+
+
+
+    // contributors
+    const contributorsPath = path.join(__dirname, 'contributors/contributors.yaml')
+    const contributorsRaw = await fs.readFile(contributorsPath, 'utf8')
+    const contributorsJson = yaml.safeLoad(contributorsRaw)
+    const contributors = addCollection('Contributor')
+
+    contributorsJson.forEach(({ id, name: title, ...fields }) => {
+      contributors.addNode({
         id,
         title,
         internal: {
-          origin: authorsPath
+          origin: contributorsPath
         },
         ...fields
       })

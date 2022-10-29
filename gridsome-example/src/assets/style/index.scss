@@ -1,3 +1,4 @@
+@import "mixins";
 @import 'reset';
 @import 'variables';
 @import 'typography';
@@ -5,3 +6,6 @@
 @import 'code';
 @import 'content-box';
 @import 'utils';
+
+@import '_components';
+@import '_pages';
