@@ -8,6 +8,11 @@ module.exports = {
   siteName: 'Avni Kasikci',
   siteDescription: 'Full Stack Developer',
 
+  authorInfo:{
+    name:"avni",
+    surname:"kasikci"
+  },
+
   templates: {
     Post: '/:title',
     Tag: '/tag/:id'
@@ -19,7 +24,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Post',
-        path: '/static/content/posts/*.md',
+        path: 'static/content/posts/*.md',
         refs: {
           // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
           tags: {
